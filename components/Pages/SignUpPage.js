@@ -14,6 +14,7 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../../styles/styles";
 import LoginButton from "../LoginButton";
+import showErrorNotification from "../../assets/utils/errorHelper";
 
 const SignUpPage = ({ navigation }) => {
   const { width, height } = useWindowDimensions();
@@ -25,7 +26,7 @@ const SignUpPage = ({ navigation }) => {
 
   const handleRegister = async () => {
     if (!name || !email || !password) {
-      Alert.alert("Error", "All fields are required!");
+      showErrorNotification("Error", "All fields are required!");
       return;
     }
 
@@ -36,8 +37,8 @@ const SignUpPage = ({ navigation }) => {
       usersArray.push(newUser);
       await AsyncStorage.setItem("users", JSON.stringify(usersArray));
 
-      Alert.alert("Success", "Registration complete!", [
-        { text: "OK", onPress: () => navigation.goBack() },
+      showErrorNotification("Success", "Registration complete!", [
+        { onPress: () => navigation.goBack() },
       ]);
     } catch (error) {
       console.error("Error saving data:", error);
@@ -66,18 +67,18 @@ const SignUpPage = ({ navigation }) => {
             <Text style={styles.signUpTitle}>Sign Up</Text>
 
             <TextInput
-              style={styles.input}
+              style={[styles.input, { backgroundColor: "#F5F5F5" }]}
               placeholder="Name"
-              placeholderTextColor="#888"
+              placeholderTextColor="black"
               autoCapitalize="none"
               value={name}
               onChangeText={setName}
             />
 
             <TextInput
-              style={styles.input}
+              style={[styles.input, { backgroundColor: "#F5F5F5" }]}
               placeholder="Email Address"
-              placeholderTextColor="#888"
+              placeholderTextColor="black"
               value={email}
               onChangeText={setEmail}
               keyboardType="email-address"
@@ -85,9 +86,9 @@ const SignUpPage = ({ navigation }) => {
             />
 
             <TextInput
-              style={styles.input}
+              style={[styles.input, { backgroundColor: "#F5F5F5" }]}
               placeholder="Password"
-              placeholderTextColor="#888"
+              placeholderTextColor="black"
               value={password}
               onChangeText={setPassword}
               secureTextEntry

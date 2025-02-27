@@ -8,6 +8,7 @@ import {
 } from "@expo-google-fonts/manrope";
 import WeatherApp from "./components/WeatherApp";
 import SignUpPage from "./components/Pages/SignUpPage";
+import LoginPage from "./components/Pages/LoginPage";
 import { Animated, Easing } from "react-native";
 
 const Stack = createStackNavigator();
@@ -18,14 +19,14 @@ const fadeTransition = {
     open: {
       animation: "timing",
       config: {
-        duration: 500, // Duration of the fade effect
+        duration: 800, // Duration of the fade effect
         easing: Easing.out(Easing.poly(4)),
       },
     },
     close: {
       animation: "timing",
       config: {
-        duration: 500,
+        duration: 800,
         easing: Easing.out(Easing.poly(4)),
       },
     },
@@ -51,6 +52,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={WeatherApp} />
+        <Stack.Screen name="Login" component={LoginPage} options={fadeTransition} />
         <Stack.Screen name="SignUp" component={SignUpPage} options={fadeTransition} />
       </Stack.Navigator>
     </NavigationContainer>

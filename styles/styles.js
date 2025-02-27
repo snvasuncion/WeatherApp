@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   appBody: {
+    //column
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -10,6 +11,7 @@ const styles = StyleSheet.create({
     paddingBottom: 50,
   },
   appBodyLandscape: {
+    //row
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-around",
@@ -78,7 +80,6 @@ const styles = StyleSheet.create({
   input: {
     width: "100%",
     height: 50,
-    backgroundColor: "#2E2E3E",
     color: "white",
     borderRadius: 10,
     paddingHorizontal: 15,
@@ -122,6 +123,40 @@ const styles = StyleSheet.create({
     paddingHorizontal: 50,
     paddingVertical: 20,
     backgroundColor: "#1E1E2E",
+  },
+  loginTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "white",
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  loginBody: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "#1E1E2E",
+  },
+  emailRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#808080",
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    backgroundColor: "#F5F5F5",
+    height: 50,
+    marginBottom: 10,
+  },
+  iconStyle: {
+    marginRight: 10,
+  },
+  loginInput: {
+    flex: 1,
+    height: "100%",
+    color: "black",
+    fontSize: 16,
   },
 });
 

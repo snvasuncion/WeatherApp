@@ -69,7 +69,7 @@ const WeatherApp = () => {
         </View>
         <LoginButton
           title="Sign In"
-          onPress={() => console.log("I am pressed")}
+          onPress={() => navigation.navigate("Login")}
         />
         <LoginButton
           title="Sign Up"
