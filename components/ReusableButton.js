@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import styles from "../styles/styles";
 
-const LoginButton = ({ title, onPress }) => {
+const ReusableButton = ({ title, onPress }) => {
   const ButtonPlatform =
     Platform.OS === "android" ? TouchableNativeFeedback : TouchableOpacity;
 
@@ -30,4 +30,4 @@ const LoginButton = ({ title, onPress }) => {
   );
 };
 
-export default LoginButton;
+export default ReusableButton;

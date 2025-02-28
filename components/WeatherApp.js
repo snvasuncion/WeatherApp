@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StatusBar, Dimensions } from "react-native";
 import { Image } from "expo-image";
-import LoginButton from "./LoginButton";
+import ReusableButton from "./ReusableButton";
 import styles from "../styles/styles";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -67,11 +67,11 @@ const WeatherApp = () => {
         <View style={styles.titleContainer}>
           <Text style={styles.appTitle}>Hina Weather App</Text>
         </View>
-        <LoginButton
+        <ReusableButton
           title="Sign In"
           onPress={() => navigation.navigate("Login")}
         />
-        <LoginButton
+        <ReusableButton
           title="Sign Up"
           onPress={() => navigation.navigate("SignUp")}
         />

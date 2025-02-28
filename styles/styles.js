@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 
 const styles = StyleSheet.create({
   appBody: {
@@ -157,6 +157,101 @@ const styles = StyleSheet.create({
     height: "100%",
     color: "black",
     fontSize: 16,
+  },
+  dashboardBody: {
+    flex: 1,
+    backgroundColor: "transparent",
+    padding: 20,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  dbWelcomeText: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#FFFFFF",
+    marginBottom: 5,
+  },
+  dbSubtitle: {
+    fontSize: 16,
+    color: "#B0B0B0",
+    marginBottom: 20,
+  },
+  searchBarContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#2C2C3E",
+    borderRadius: 25,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    marginBottom: 20,
+    width: "100%",
+  },
+  searchBar: {
+    flex: 1,
+    fontSize: 16,
+    color: "white",
+  },
+  searchButton: {
+    width: 50,
+    height: 50,
+    backgroundColor: "purple", 
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 25,
+    marginLeft: 10,
+    overflow: "hidden", 
+    ...Platform.select({
+      ios: {
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 5,
+      },
+    }),
+  },
+  weatherCard: {
+    backgroundColor: "#2C2C3E",
+    borderRadius: 15,
+    padding: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    width: "90%",
+    marginBottom: 20,
+    ...Platform.select({
+      ios: {
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+      },
+      android: {
+        elevation: 6,
+      },
+    }),
+  },
+  weatherText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "white",
+  },
+  tempText: {
+    fontSize: 36,
+    fontWeight: "bold",
+    color: "#FFD700",
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: "repeat",
+    justifyContent: "center",
+    width: "100%",
+    height: "100%",
+  },
+  blurContainer: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0, 0, 0, 0.3)",
   },
 });
 

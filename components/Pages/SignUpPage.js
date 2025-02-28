@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TextInput,
-  Alert,
   ScrollView,
   KeyboardAvoidingView,
   Platform,
@@ -13,7 +12,7 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../../styles/styles";
-import LoginButton from "../LoginButton";
+import ReusableButton from "../ReusableButton";
 import showErrorNotification from "../../assets/utils/errorHelper";
 
 const SignUpPage = ({ navigation }) => {
@@ -38,7 +37,7 @@ const SignUpPage = ({ navigation }) => {
       await AsyncStorage.setItem("users", JSON.stringify(usersArray));
 
       showErrorNotification("Success", "Registration complete!", [
-        { onPress: () => navigation.goBack() },
+        { text: "OK", onPress: () => navigation.goBack() },
       ]);
     } catch (error) {
       console.error("Error saving data:", error);
@@ -67,7 +66,7 @@ const SignUpPage = ({ navigation }) => {
             <Text style={styles.signUpTitle}>Sign Up</Text>
 
             <TextInput
-              style={[styles.input, { backgroundColor: "#F5F5F5" }]}
+              style={[styles.input, { backgroundColor: "#F5F5F5", color: "black" }]}
               placeholder="Name"
               placeholderTextColor="black"
               autoCapitalize="none"
@@ -76,7 +75,7 @@ const SignUpPage = ({ navigation }) => {
             />
 
             <TextInput
-              style={[styles.input, { backgroundColor: "#F5F5F5" }]}
+              style={[styles.input, { backgroundColor: "#F5F5F5", color: "black" }]}
               placeholder="Email Address"
               placeholderTextColor="black"
               value={email}
@@ -86,7 +85,7 @@ const SignUpPage = ({ navigation }) => {
             />
 
             <TextInput
-              style={[styles.input, { backgroundColor: "#F5F5F5" }]}
+              style={[styles.input, { backgroundColor: "#F5F5F5", color: "black" }]}
               placeholder="Password"
               placeholderTextColor="black"
               value={password}
@@ -95,8 +94,8 @@ const SignUpPage = ({ navigation }) => {
             />
 
             <View style={styles.signUpButtonColumn}>
-              <LoginButton title="Register" onPress={handleRegister} />
-              <LoginButton
+              <ReusableButton title="Register" onPress={handleRegister} />
+              <ReusableButton
                 title="Go back"
                 onPress={() => navigation.goBack()}
               />

@@ -1,59 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import {
-  useFonts,
-  Manrope_400Regular,
-  Manrope_700Bold,
-} from "@expo-google-fonts/manrope";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import WeatherApp from "./components/WeatherApp";
-import SignUpPage from "./components/Pages/SignUpPage";
 import LoginPage from "./components/Pages/LoginPage";
-import { Animated, Easing } from "react-native";
+import SignUpPage from "./components/Pages/SignUpPage";
+import DashboardPage from "./components/Pages/DashboardPage";
 
 const Stack = createStackNavigator();
 
-const fadeTransition = {
-  gestureEnabled: true,
-  transitionSpec: {
-    open: {
-      animation: "timing",
-      config: {
-        duration: 800, // Duration of the fade effect
-        easing: Easing.out(Easing.poly(4)),
-      },
-    },
-    close: {
-      animation: "timing",
-      config: {
-        duration: 800,
-        easing: Easing.out(Easing.poly(4)),
-      },
-    },
-  },
-  cardStyleInterpolator: ({ current }) => ({
-    cardStyle: {
-      opacity: current.progress, // Fades based on transition progress
-    },
-  }),
-};
-
 export default function App() {
-  const [fontsLoaded] = useFonts({
-    Manrope_400Regular,
-    Manrope_700Bold,
-  });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  if (!fontsLoaded) {
-    return null;
-  }
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const user = await AsyncStorage.getItem("loggedInUser");
+      setIsLoggedIn(!!user);
+    };
+    checkLoginStatus();
+  }, []);
 
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Home" component={WeatherApp} />
-        <Stack.Screen name="Login" component={LoginPage} options={fadeTransition} />
-        <Stack.Screen name="SignUp" component={SignUpPage} options={fadeTransition} />
+        {!isLoggedIn ? (
+          <>
+            <Stack.Screen name="Home" component={WeatherApp} />
+            <Stack.Screen name="Login">
+              {(props) => <LoginPage {...props} setIsLoggedIn={setIsLoggedIn} />}
+            </Stack.Screen>
+            <Stack.Screen name="SignUp" component={SignUpPage} />
+          </>
+        ) : (
+          <Stack.Screen name="Dashboard">
+            {(props) => <DashboardPage {...props} setIsLoggedIn={setIsLoggedIn} />}
+          </Stack.Screen>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
