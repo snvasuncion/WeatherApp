@@ -6,4 +6,5 @@ search for the weather forecast details of the desired location
 save history of the previously searched location
 
 Here's my favorite student!
+<br>
 ![Hina Sorasaki](assets/images/hina_images/hina-hina-sorasaki.gif)
