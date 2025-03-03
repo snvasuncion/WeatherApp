@@ -1,8 +1,7 @@
-import { StyleSheet, Platform } from "react-native";
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   appBody: {
-    //column
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -11,7 +10,6 @@ const styles = StyleSheet.create({
     paddingBottom: 50,
   },
   appBodyLandscape: {
-    //row
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-around",
@@ -27,8 +25,9 @@ const styles = StyleSheet.create({
   },
   appTitle: {
     fontSize: 24,
-    fontFamily: "Manrope_700Bold",
     color: "white",
+    fontFamily: "Satoshi-Variable",
+    fontWeight: "700",
   },
   imageContainer: {
     alignItems: "center",
@@ -76,182 +75,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "Manrope_700Bold",
     color: "white",
-  },
-  input: {
-    width: "100%",
-    height: 50,
-    color: "white",
-    borderRadius: 10,
-    paddingHorizontal: 15,
-    marginBottom: 15,
-    borderWidth: 1,
-    borderColor: "grey",
-  },
-  signUpTitle: {
-    fontSize: 24,
-    fontFamily: "Manrope_700Bold",
-    color: "white",
-    marginBottom: 20,
-  },
-  signUpButtonColumn: {
-    paddingTop: 16,
-    flexDirection: "column",
-    justifyContent: "space-between",
-    height: 130,
-  },
-  signUpScrollContainer: {
-    flexGrow: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingVertical: 20,
-    paddingHorizontal: 20,
-    backgroundColor: "#1E1E2E",
-  },
-  signUpContainer: {
-    width: "100%",
-    maxWidth: 400,
-    alignSelf: "center",
-    alignItems: "center",
-    backgroundColor: "#1E1E2E",
-  },
-  signUpPageLandscape: {
-    backgroundColor: "#2E2E3E",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: 50,
-    paddingVertical: 20,
-    backgroundColor: "#1E1E2E",
-  },
-  loginTitle: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "white",
-    textAlign: "center",
-    marginBottom: 20,
-  },
-  loginBody: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-    backgroundColor: "#1E1E2E",
-  },
-  emailRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#808080",
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    backgroundColor: "#F5F5F5",
-    height: 50,
-    marginBottom: 10,
-  },
-  iconStyle: {
-    marginRight: 10,
-  },
-  loginInput: {
-    flex: 1,
-    height: "100%",
-    color: "black",
-    fontSize: 16,
-  },
-  dashboardBody: {
-    flex: 1,
-    backgroundColor: "transparent",
-    padding: 20,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  dbWelcomeText: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#FFFFFF",
-    marginBottom: 5,
-  },
-  dbSubtitle: {
-    fontSize: 16,
-    color: "#B0B0B0",
-    marginBottom: 20,
-  },
-  searchBarContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#2C2C3E",
-    borderRadius: 25,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    marginBottom: 20,
-    width: "100%",
-  },
-  searchBar: {
-    flex: 1,
-    fontSize: 16,
-    color: "white",
-  },
-  searchButton: {
-    width: 50,
-    height: 50,
-    backgroundColor: "purple", 
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 25,
-    marginLeft: 10,
-    overflow: "hidden", 
-    ...Platform.select({
-      ios: {
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 5,
-      },
-    }),
-  },
-  weatherCard: {
-    backgroundColor: "#2C2C3E",
-    borderRadius: 15,
-    padding: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    width: "90%",
-    marginBottom: 20,
-    ...Platform.select({
-      ios: {
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 5,
-      },
-      android: {
-        elevation: 6,
-      },
-    }),
-  },
-  weatherText: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "white",
-  },
-  tempText: {
-    fontSize: 36,
-    fontWeight: "bold",
-    color: "#FFD700",
-  },
-  backgroundImage: {
-    flex: 1,
-    resizeMode: "repeat",
-    justifyContent: "center",
-    width: "100%",
-    height: "100%",
-  },
-  blurContainer: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
   },
 });
 

@@ -10,39 +10,16 @@ import {
   Keyboard,
   useWindowDimensions,
 } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import styles from "../../styles/styles";
-import ReusableButton from "../ReusableButton";
-import showErrorNotification from "../../assets/utils/errorHelper";
+import signUpStyle from "../styles/signUpStyle";
+import ReusableButton from "../components/ReusableButton";
+import { register } from "../viewmodels/SignUpViewModel";
 
 const SignUpPage = ({ navigation }) => {
   const { width, height } = useWindowDimensions();
   const isLandscape = width > height;
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleRegister = async () => {
-    if (!name || !email || !password) {
-      showErrorNotification("Error", "All fields are required!");
-      return;
-    }
-
-    try {
-      const newUser = { name, email, password };
-      const existingUsers = await AsyncStorage.getItem("users");
-      const usersArray = existingUsers ? JSON.parse(existingUsers) : [];
-      usersArray.push(newUser);
-      await AsyncStorage.setItem("users", JSON.stringify(usersArray));
-
-      showErrorNotification("Success", "Registration complete!", [
-        { text: "OK", onPress: () => navigation.goBack() },
-      ]);
-    } catch (error) {
-      console.error("Error saving data:", error);
-    }
-  };
 
   return (
     <KeyboardAvoidingView
@@ -53,20 +30,25 @@ const SignUpPage = ({ navigation }) => {
         <ScrollView
           contentContainerStyle={
             isLandscape
-              ? styles.signUpPageLandscape
-              : styles.signUpScrollContainer
+              ? signUpStyle.signUpPageLandscape
+              : signUpStyle.signUpScrollContainer
           }
           keyboardShouldPersistTaps="handled"
         >
           <View
             style={
-              isLandscape ? styles.signUpPageLandscape : styles.signUpContainer
+              isLandscape
+                ? signUpStyle.signUpPageLandscape
+                : signUpStyle.signUpContainer
             }
           >
-            <Text style={styles.signUpTitle}>Sign Up</Text>
+            <Text style={signUpStyle.signUpTitle}>Sign Up</Text>
 
             <TextInput
-              style={[styles.input, { backgroundColor: "#F5F5F5", color: "black" }]}
+              style={[
+                signUpStyle.signUpinput,
+                { backgroundColor: "#F5F5F5", color: "black" },
+              ]}
               placeholder="Name"
               placeholderTextColor="black"
               autoCapitalize="none"
@@ -75,7 +57,10 @@ const SignUpPage = ({ navigation }) => {
             />
 
             <TextInput
-              style={[styles.input, { backgroundColor: "#F5F5F5", color: "black" }]}
+              style={[
+                signUpStyle.signUpinput,
+                { backgroundColor: "#F5F5F5", color: "black" },
+              ]}
               placeholder="Email Address"
               placeholderTextColor="black"
               value={email}
@@ -85,7 +70,10 @@ const SignUpPage = ({ navigation }) => {
             />
 
             <TextInput
-              style={[styles.input, { backgroundColor: "#F5F5F5", color: "black" }]}
+              style={[
+                signUpStyle.signUpinput,
+                { backgroundColor: "#F5F5F5", color: "black" },
+              ]}
               placeholder="Password"
               placeholderTextColor="black"
               value={password}
@@ -93,8 +81,11 @@ const SignUpPage = ({ navigation }) => {
               secureTextEntry
             />
 
-            <View style={styles.signUpButtonColumn}>
-              <ReusableButton title="Register" onPress={handleRegister} />
+            <View style={signUpStyle.signUpButtonColumn}>
+              <ReusableButton
+                title="Register"
+                onPress={() => register(name, email, password, navigation)}
+              />
               <ReusableButton
                 title="Go back"
                 onPress={() => navigation.goBack()}

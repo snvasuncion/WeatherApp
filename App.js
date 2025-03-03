@@ -1,24 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import WeatherApp from "./components/WeatherApp";
-import LoginPage from "./components/Pages/LoginPage";
-import SignUpPage from "./components/Pages/SignUpPage";
-import DashboardPage from "./components/Pages/DashboardPage";
+import WeatherApp from "./views/WeatherApp";
+import LoginPage from "./views/LoginPage";
+import SignUpPage from "./views/SignUpPage";
+import MainNavigator from "./views/MainNavigator";
 
 const Stack = createStackNavigator();
+export const navigationRef = React.createRef();
+
+const fadeTransition = {
+  cardStyleInterpolator: ({ current }) => ({
+    cardStyle: {
+      opacity: current.progress,
+    },
+  }),
+};
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  useEffect(() => {
+    async function prepareApp() {
+      try {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        const user = await AsyncStorage.getItem("loggedInUser");
+        setIsLoggedIn(!!user);
+      } catch (error) {
+        console.warn("Error loading app:", error);
+      }
+    }
+
+    prepareApp();
+  }, []);
 
   useEffect(() => {
-    const checkLoginStatus = async () => {
-      const user = await AsyncStorage.getItem("loggedInUser");
-      setIsLoggedIn(!!user);
-    };
-    checkLoginStatus();
-  }, []);
+    if (isLoggedIn) {
+      navigationRef.current?.replace("MainNavigator"); 
+    }
+  }, [isLoggedIn]);
 
   return (
     <NavigationContainer>
@@ -26,14 +47,22 @@ export default function App() {
         {!isLoggedIn ? (
           <>
             <Stack.Screen name="Home" component={WeatherApp} />
-            <Stack.Screen name="Login">
-              {(props) => <LoginPage {...props} setIsLoggedIn={setIsLoggedIn} />}
+            <Stack.Screen name="Login" options={fadeTransition}>
+              {(props) => (
+                <LoginPage {...props} setIsLoggedIn={setIsLoggedIn} />
+              )}
             </Stack.Screen>
-            <Stack.Screen name="SignUp" component={SignUpPage} />
+            <Stack.Screen
+              name="SignUp"
+              component={SignUpPage}
+              options={fadeTransition}
+            />
           </>
         ) : (
-          <Stack.Screen name="Dashboard">
-            {(props) => <DashboardPage {...props} setIsLoggedIn={setIsLoggedIn} />}
+          <Stack.Screen name="MainNavigator">
+            {(props) => (
+              <MainNavigator {...props} setIsLoggedIn={setIsLoggedIn} />
+            )}
           </Stack.Screen>
         )}
       </Stack.Navigator>

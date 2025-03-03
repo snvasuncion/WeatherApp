@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_KEY = "4b889ab9f599ca1c8c923a1a24076155"; // 🔹
+const API_KEY = ""; //put API key inside the double quotation marks
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 
 export const fetchWeatherData = async (city) => {
