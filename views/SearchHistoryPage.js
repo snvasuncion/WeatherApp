@@ -39,7 +39,7 @@ const SearchHistoryPage = ({ navigation }) => {
 
         <FlatList
           data={history}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(index) => index.toString()}
           renderItem={({ item }) => (
             <TouchableOpacity
               style={searchHistoryStyle.historyCard}
@@ -51,8 +51,8 @@ const SearchHistoryPage = ({ navigation }) => {
             </TouchableOpacity>
           )}
           ListEmptyComponent={
-            <View style={{ alignItems: "center", marginTop: 20 }}>
-              <Icon name="history" size={50} color="white" />
+            <View style={searchHistoryStyle.noHistoryContainer}>
+              <Icon name="cloud-off" size={50} color="white" />
               <Text style={searchHistoryStyle.noHistoryText}>
                 There are no cities searched yet...
               </Text>

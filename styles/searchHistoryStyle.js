@@ -57,6 +57,11 @@ const searchHistoryStyle = StyleSheet.create({
     textAlign: "center",
     marginTop: 20,
   },
+  noHistoryContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
 
 export default searchHistoryStyle;

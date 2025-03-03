@@ -15,7 +15,7 @@ const dashboardViewModel = (navigation, route, setIsLoggedIn) => {
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    const fetchUsername = async () => {
+    const getUsername = async () => {
       try {
         const userData = await AsyncStorage.getItem("loggedInUser");
         if (userData) {
@@ -25,23 +25,23 @@ const dashboardViewModel = (navigation, route, setIsLoggedIn) => {
           setUsername("Guest");
         }
       } catch (error) {
-        showErrorNotification("Error", "Failed to fetch user data.");
+        showErrorNotification("Error", "Failed to get user data.");
       }
     };
-    fetchUsername();
+    getUsername();
   }, []);
 
   useEffect(() => {
-    const fetchHistory = async () => {
+    const getHistory = async () => {
       try {
         const storedHistory = await AsyncStorage.getItem("searchHistory");
         setHistory(storedHistory ? JSON.parse(storedHistory) : []);
       } catch (error) {
-        showErrorNotification("Error", "Failed to fetch search history.");
+        showErrorNotification("Error", "Failed to get search history.");
       }
     };
-    fetchHistory();
-    const unsubscribe = navigation.addListener("focus", fetchHistory);
+    getHistory();
+    const unsubscribe = navigation.addListener("focus", getHistory);
     return unsubscribe;
   }, [navigation]);
 
@@ -60,8 +60,8 @@ const dashboardViewModel = (navigation, route, setIsLoggedIn) => {
   const searchCityFunction = async () => {
     if (!search.trim()) {
       showErrorNotification(
-        "Invalid Input",
-        "Please enter a city before searching"
+        "Invalid Input!",
+        "Please enter a city before searching!"
       );
       return;
     }

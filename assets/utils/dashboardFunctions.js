@@ -1,9 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { fetchWeatherData } from "../../api/weatherServices";
+import { getWeatherData } from "../../api/weatherServices";
 
 export const getWeatherDetails= async (search, setLocation, setTemperature, setIcon) => {
   if (!search) return;
-  const weatherData = await fetchWeatherData(search);
+  const weatherData = await getWeatherData(search);
   if (weatherData) {
     setLocation(weatherData.location);
     setTemperature(weatherData.temperature);
